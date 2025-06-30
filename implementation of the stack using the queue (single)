@@ -1,0 +1,19 @@
+the methods we are using  are from the in built queue library
+
+Method	What It Does
+put(x)	Enqueue item x
+get()	Dequeue item from front
+qsize()	Return number of items
+empty()	Returns True if queue is empty
+full()	Returns True if queue is full
+maxsize	Maximum number of items allowed in queue
+from queue import Queue
+--------------
+here  queue is a collection/libaray
+and Queue is the class in the library of the queue
+the library queue contains many classes they are 
+Class	Behavior	Use Case
+Queue	FIFO queue	Normal queue
+LifoQueue	LIFO queue (stack)	Stack behavior
+PriorityQueue	Priority-based	Process items based on priority
+------------------------------------------------------------------------------
