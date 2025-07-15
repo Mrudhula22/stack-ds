@@ -42,3 +42,76 @@ print(s.top())
 print(s.len())
 --------------------------------------------------------------------------
 implementation of the stack using the two queues
+from queue import Queue
+class MyStack(object):
+
+    def __init__(self):
+        self.q1=Queue()
+        self.q2=Queue()
+
+    def push(self, x):
+        """
+        :type x: int
+        :rtype: None
+        """
+        self.q2.put(x)
+        while not self.q1.empty():
+            self.q2.put(self.q2.get())
+        self.q1,self.q2=self.q2,self.q1
+    def pop(self):
+        """
+        :rtype: int
+        """
+        return self.q1.get()
+
+    def top(self):
+        """
+        :rtype: int
+        """
+        top=self.q1.get()
+        self.q2.put(top)
+        while not self.q1.empty():
+            self.q2.put(self.q1.get())
+        self.q1,self.q2=self.q2,self.q1
+        return top
+        
+
+    def empty(self):
+        """
+        :rtype: bool
+        """
+        return self.q1.empty()
+--------------------------------------------------
+but the problem here is the leetcode does not support the vesrion of the queue library it alloows the dequeue that is the double ended queue 
+now let us see about that
+
+Method	Description	Example
+append(x)	Add to right end	dq.append(10) → [10]
+appendleft(x)	Add to left end	dq.appendleft(5) → [5, 10]
+extend(iterable)	Add multiple elements to right end	dq.extend([20, 30]) → [5, 10, 20, 30]
+extendleft(iterable)	Add multiple to left end (in reverse order!)	dq.extendleft([1, 2]) → [2, 1, 5, 10, 20, 30]
+]
+
+🔹 2. Removing Elements
+Method	Description	Example
+pop()	Remove from right end	dq.pop() → removes last element
+popleft()	Remove from left end	dq.popleft() → removes first element
+remove(x)	Remove first occurrence of x	dq.remove(10)
+clear()	Remove all elements	dq.clear()
+
+🔹 3. Accessing / Inspecting
+Method / Operation	Description	Example
+dq[0]	Access first element	
+dq[-1]	Access last element	
+len(dq)	Get number of elements	
+list(dq)	Convert deque to list	
+
+🔹 4. Rotation
+Method	Description	Example
+rotate(n)	Rotate deque by n steps.
+Right if n > 0, left if n < 0	dq.rotate(2)
+maxlen	Attribute: shows maximum size (if set)	dq = deque([], maxlen=5)
+
+Using	How to check if empty
+queue.Queue()	q1.empty() ✅
+collections.deque()	not q1 ✅
